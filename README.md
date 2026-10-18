@@ -1,5 +1,5 @@
 # fast-cow-screenshot
-Screenshot tool in Kotlin
+Приложение для создания скриншотов с параметризацией
 
 ## Работа с агентами
 
