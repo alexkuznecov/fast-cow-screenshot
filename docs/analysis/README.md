@@ -38,6 +38,9 @@
 
 | ID | Решение | Статус |
 |---|---|---|
+| [ADR-001](decisions/ADR-001-platform-stack-jdk25-compose.md) | Kotlin 2.4 / JDK 25 / Gradle 9 / Compose Multiplatform Desktop (вместо TornadoFX) | Accepted |
+| [ADR-002](decisions/ADR-002-winapi-via-jna.md) | WinAPI через JNA: GDI-захват, RegisterHotKey, CF_DIB, нативные диалоги | Accepted |
+| [ADR-003](decisions/ADR-003-settings-logging-tests.md) | Настройки JSON в %APPDATA%, SLF4J + Logback, JUnit 6 + MockK | Accepted |
 
 ## Исследования
 

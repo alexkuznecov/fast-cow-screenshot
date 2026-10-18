@@ -26,6 +26,7 @@
 
 | ID | Название | Входные артефакты | Статус |
 |---|---|---|---|
+| [TDD-001](designs/TDD-001-screen-capture-v1.md) | Захват экрана (3 режима), буфер, автосохранение, «Сохранить как», настройки — v1 Windows | REQ-001, US-001 – US-007, RES-001 | Review |
 
 ## Задачи
 
@@ -33,12 +34,29 @@
 
 | ID | Название | TDD | Зависит от | Оценка | Статус |
 |---|---|---|---|---|---|
+| [TASK-001](tasks/TASK-001-gradle-project-skeleton.md) | Каркас Gradle-проекта | TDD-001 | — | M | Ready |
+| [TASK-002](tasks/TASK-002-domain-geometry.md) | Доменная геометрия и модели | TDD-001 | 001 | M | Ready |
+| [TASK-003](tasks/TASK-003-file-names.md) | Имена файлов, `.png`, сокращение пути | TDD-001 | 001 | S | Ready |
+| [TASK-004](tasks/TASK-004-settings-model-and-storage.md) | Модель настроек и JSON-хранилище | TDD-001 | 002 | M | Ready |
+| [TASK-005](tasks/TASK-005-jna-winapi-mappings.md) | JNA-маппинги WinAPI, DPI, HWND | TDD-001 | 001 | L | Ready |
+| [TASK-006](tasks/TASK-006-monitors-gdi-capture-cursor.md) | Мониторы, GDI-захват, указатель | TDD-001 | 002, 005 | L | Ready |
+| [TASK-007](tasks/TASK-007-message-loop-hotkeys.md) | Цикл сообщений и горячие клавиши | TDD-001 | 004, 005 | M | Ready |
+| [TASK-008](tasks/TASK-008-clipboard-writer.md) | Буфер обмена CF_DIB | TDD-001 | 005, 006, 007 | M | Ready |
+| [TASK-009](tasks/TASK-009-png-autosave-known-folders.md) | Автосохранение PNG и Known Folders | TDD-001 | 003, 004, 005 | M | Ready |
+| [TASK-010](tasks/TASK-010-capture-coordinator.md) | Координатор захвата и потоки | TDD-001 | 006, 008, 009 | L | Ready |
+| [TASK-011](tasks/TASK-011-notification-window.md) | Окно уведомлений | TDD-001 | 003, 005, 010 | M | Ready |
+| [TASK-012](tasks/TASK-012-save-as.md) | «Сохранить как…» | TDD-001 | 003, 004, 005, 009, 010 | M | Ready |
+| [TASK-013](tasks/TASK-013-region-overlay.md) | Оверлей выделения области | TDD-001 | 002, 005, 010 | L | Ready |
+| [TASK-014](tasks/TASK-014-settings-window.md) | Окно настроек | TDD-001 | 004, 005, 007, 009, 010, 011 | L | Ready |
+| [TASK-015](tasks/TASK-015-tray-app-wiring.md) | Трей, сборка приложения, приёмка | TDD-001 | 011, 012, 013, 014 | M | Ready |
+| [TASK-016](tasks/TASK-016-distribution-and-nfr.md) | Дистрибутив app-image и замеры NFR | TDD-001 | 015 | S | Ready |
 
 ## Порядок выполнения
 
 Задачи выполняются сверху вниз; задача берётся в работу, только когда все её зависимости в статусе `Done`.
 
-Н/П — задач пока нет.
+TASK-001 → 002 → 003 → 004 → 005 → 006 → 007 → 008 → 009 → 010 → 011 → 012 → 013 → 014 → 015 → 016.
+TASK-002/003/005 и TASK-011/012/013 между собой независимы.
 
 ## Запросы уточнения
 
