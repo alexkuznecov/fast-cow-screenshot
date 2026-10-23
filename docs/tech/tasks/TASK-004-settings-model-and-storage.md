@@ -51,12 +51,12 @@
 
 ## 3. Предусловия
 
-- TASK-002 выполнена: есть `io.github.alexkuznecov.fastcow.domain.CaptureMode`.
+- TASK-002 выполнена: есть `by.sparkyanvil.fastcow.domain.CaptureMode`.
 - `.\gradlew.bat build` → `BUILD SUCCESSFUL`.
 
 ## 4. Область изменений
 
-`M = src/main/kotlin/io/github/alexkuznecov/fastcow/settings/`, `T = src/test/kotlin/io/github/alexkuznecov/fastcow/settings/`.
+`M = src/main/kotlin/by/sparkyanvil/fastcow/settings/`, `T = src/test/kotlin/by/sparkyanvil/fastcow/settings/`.
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
@@ -78,7 +78,7 @@
 ## 6. Контракты
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.settings
+package by.sparkyanvil.fastcow.settings
 
 /** Действие горячей клавиши. displayName — текст для UI. */
 internal enum class HotkeyAction(val displayName: String, val mode: CaptureMode) {
@@ -178,7 +178,7 @@ internal class SettingsStore(private val repository: SettingsRepository) {
 }
 ```
 
-Импорт `CaptureMode`: `io.github.alexkuznecov.fastcow.domain.CaptureMode`. `@Serializable` — `kotlinx.serialization.Serializable`.
+Импорт `CaptureMode`: `by.sparkyanvil.fastcow.domain.CaptureMode`. `@Serializable` — `kotlinx.serialization.Serializable`.
 
 ## 7. Пошаговая реализация
 
@@ -259,7 +259,7 @@ internal class SettingsStore(private val repository: SettingsRepository) {
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "io.github.alexkuznecov.fastcow.settings.*"` | 16 тестов пройдены |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.settings.*"` | 16 тестов пройдены |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 ## 13. Критерии готовности (Definition of Done)

@@ -61,14 +61,14 @@
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
-| 1 | `src/main/kotlin/io/github/alexkuznecov/fastcow/capture/RegionSelector.kt` | Создать | интерфейс |
-| 2 | `src/main/kotlin/io/github/alexkuznecov/fastcow/capture/CaptureOutcome.kt` | Создать | data class |
-| 3 | `src/main/kotlin/io/github/alexkuznecov/fastcow/capture/CaptureNotifier.kt` | Создать | интерфейс |
-| 4 | `src/main/kotlin/io/github/alexkuznecov/fastcow/capture/LastScreenshotHolder.kt` | Создать | класс |
-| 5 | `src/main/kotlin/io/github/alexkuznecov/fastcow/capture/CaptureCoordinator.kt` | Создать | класс |
-| 6 | `src/main/kotlin/io/github/alexkuznecov/fastcow/app/AppThreads.kt` | Создать | класс |
-| 7 | `src/test/kotlin/io/github/alexkuznecov/fastcow/capture/CaptureCoordinatorTest.kt` | Создать | unit |
-| 8 | `src/test/kotlin/io/github/alexkuznecov/fastcow/capture/LastScreenshotHolderTest.kt` | Создать | unit |
+| 1 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/RegionSelector.kt` | Создать | интерфейс |
+| 2 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/CaptureOutcome.kt` | Создать | data class |
+| 3 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/CaptureNotifier.kt` | Создать | интерфейс |
+| 4 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/LastScreenshotHolder.kt` | Создать | класс |
+| 5 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/CaptureCoordinator.kt` | Создать | класс |
+| 6 | `src/main/kotlin/by/sparkyanvil/fastcow/app/AppThreads.kt` | Создать | класс |
+| 7 | `src/test/kotlin/by/sparkyanvil/fastcow/capture/CaptureCoordinatorTest.kt` | Создать | unit |
+| 8 | `src/test/kotlin/by/sparkyanvil/fastcow/capture/LastScreenshotHolderTest.kt` | Создать | unit |
 
 **Файлы, которые изменять нельзя:** все, кроме перечисленных.
 
@@ -79,7 +79,7 @@
 ## 6. Контракты
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.capture
+package by.sparkyanvil.fastcow.capture
 
 /** Оверлей выбора области. select вызывается на EDT; onResult вызывается на EDT ровно один раз. */
 internal interface RegionSelector {
@@ -131,7 +131,7 @@ internal class CaptureCoordinator(
 ```
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.app
+package by.sparkyanvil.fastcow.app
 
 /** Потоки приложения (conventions.md §6). */
 internal class AppThreads(
@@ -274,7 +274,7 @@ saveExecutor.execute {
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "io.github.alexkuznecov.fastcow.capture.*"` | 13 + 2 (+4 из TASK-006) тестов |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.capture.*"` | 13 + 2 (+4 из TASK-006) тестов |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 ## 13. Критерии готовности (Definition of Done)

@@ -45,12 +45,12 @@
 
 ## 3. Предусловия
 
-- Выполнена TASK-001: сборка работает, пакет `io.github.alexkuznecov.fastcow` существует.
+- Выполнена TASK-001: сборка работает, пакет `by.sparkyanvil.fastcow` существует.
 - `.\gradlew.bat build` → `BUILD SUCCESSFUL`.
 
 ## 4. Область изменений
 
-Базовый путь `M = src/main/kotlin/io/github/alexkuznecov/fastcow/domain/`, `T = src/test/kotlin/io/github/alexkuznecov/fastcow/domain/`.
+Базовый путь `M = src/main/kotlin/by/sparkyanvil/fastcow/domain/`, `T = src/test/kotlin/by/sparkyanvil/fastcow/domain/`.
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
@@ -73,7 +73,7 @@
 ## 6. Контракты
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.domain
+package by.sparkyanvil.fastcow.domain
 
 /** Точка в физических пикселях виртуального рабочего стола. Неизменяема. */
 internal data class PixelPoint(val x: Int, val y: Int)
@@ -249,7 +249,7 @@ B = `MonitorInfo("\\\\.\\DISPLAY2", PixelRect(-2560,0,2560,1440), PixelRect(-256
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "io.github.alexkuznecov.fastcow.domain.*"` | 17 тестов пройдены |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.domain.*"` | 17 тестов пройдены |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 Ручная проверка не нужна.

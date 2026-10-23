@@ -55,10 +55,10 @@
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
-| 1 | `src/main/kotlin/io/github/alexkuznecov/fastcow/platform/windows/WindowsSaveDialog.kt` | Создать | диалог |
-| 2 | `src/main/kotlin/io/github/alexkuznecov/fastcow/platform/windows/WindowsMessageBox.kt` | Создать | MessageBox |
-| 3 | `src/main/kotlin/io/github/alexkuznecov/fastcow/ui/SaveAsAction.kt` | Создать | логика |
-| 4 | `src/test/kotlin/io/github/alexkuznecov/fastcow/ui/SaveAsActionTest.kt` | Создать | unit |
+| 1 | `src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/WindowsSaveDialog.kt` | Создать | диалог |
+| 2 | `src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/WindowsMessageBox.kt` | Создать | MessageBox |
+| 3 | `src/main/kotlin/by/sparkyanvil/fastcow/ui/SaveAsAction.kt` | Создать | логика |
+| 4 | `src/test/kotlin/by/sparkyanvil/fastcow/ui/SaveAsActionTest.kt` | Создать | unit |
 
 **Файлы, которые изменять нельзя:** все, кроме перечисленных.
 
@@ -69,7 +69,7 @@
 ## 6. Контракты
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.platform.windows
+package by.sparkyanvil.fastcow.platform.windows
 
 /** GetSaveFileNameW. Вызывать на fcs-dialog. Не бросает. */
 internal class WindowsSaveDialog(private val comdlg32: Comdlg32Api = Comdlg32Api.INSTANCE) {
@@ -98,7 +98,7 @@ internal class WindowsMessageBox(private val user32: User32Api = User32Api.INSTA
 ```
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.ui
+package by.sparkyanvil.fastcow.ui
 
 /** «Сохранить как…». run() — с любого потока, возвращается сразу. */
 internal class SaveAsAction(
@@ -221,7 +221,7 @@ dialogExecutor.execute {
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "io.github.alexkuznecov.fastcow.ui.SaveAsActionTest"` | 11 тестов |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.ui.SaveAsActionTest"` | 11 тестов |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 Ручная проверка — шаги 9–13 раздела 12 TASK-015.

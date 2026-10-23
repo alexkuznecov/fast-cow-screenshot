@@ -61,7 +61,7 @@
 
 ## 4. Область изменений
 
-`C = src/main/kotlin/io/github/alexkuznecov/fastcow/capture/`, `P = src/main/kotlin/io/github/alexkuznecov/fastcow/platform/windows/`,
+`C = src/main/kotlin/by/sparkyanvil/fastcow/capture/`, `P = src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/`,
 `TC`, `TP` — те же пути в `src/test/kotlin`.
 
 | # | Файл | Действие | Что именно |
@@ -87,7 +87,7 @@
 ## 6. Контракты
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.capture
+package by.sparkyanvil.fastcow.capture
 
 /** Ожидаемый сбой захвата (WinAPI, нет мониторов). */
 internal class CaptureException(message: String, cause: Throwable? = null) : Exception(message, cause)
@@ -141,7 +141,7 @@ internal object FrameAssembler {
 ```
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.platform.windows
+package by.sparkyanvil.fastcow.platform.windows
 
 internal class WindowsMonitorProvider(private val user32: User32Api = User32Api.INSTANCE) : MonitorProvider
 internal class GdiScreenCapturer(
@@ -281,8 +281,8 @@ DIB и изображение одного размера, поэтому инд
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "io.github.alexkuznecov.fastcow.capture.FrameAssemblerTest"` | 4 теста |
-| `.\gradlew.bat test --tests "io.github.alexkuznecov.fastcow.platform.windows.GdiCaptureIntegrationTest"` | 4 теста |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.capture.FrameAssemblerTest"` | 4 теста |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.platform.windows.GdiCaptureIntegrationTest"` | 4 теста |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 **Ручная** (пользователь, через `question`):

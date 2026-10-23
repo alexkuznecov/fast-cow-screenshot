@@ -51,11 +51,11 @@
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
-| 1 | `src/main/kotlin/io/github/alexkuznecov/fastcow/ui/NotificationModel.kt` | Создать | data class + `NotificationModels` (object в том же файле) |
-| 2 | `src/main/kotlin/io/github/alexkuznecov/fastcow/ui/NotificationContent.kt` | Создать | `@Composable` |
-| 3 | `src/main/kotlin/io/github/alexkuznecov/fastcow/ui/NotificationWindow.kt` | Создать | класс |
-| 4 | `src/main/kotlin/io/github/alexkuznecov/fastcow/platform/windows/ExplorerLauncher.kt` | Создать | класс |
-| 5 | `src/test/kotlin/io/github/alexkuznecov/fastcow/ui/NotificationModelsTest.kt` | Создать | unit |
+| 1 | `src/main/kotlin/by/sparkyanvil/fastcow/ui/NotificationModel.kt` | Создать | data class + `NotificationModels` (object в том же файле) |
+| 2 | `src/main/kotlin/by/sparkyanvil/fastcow/ui/NotificationContent.kt` | Создать | `@Composable` |
+| 3 | `src/main/kotlin/by/sparkyanvil/fastcow/ui/NotificationWindow.kt` | Создать | класс |
+| 4 | `src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/ExplorerLauncher.kt` | Создать | класс |
+| 5 | `src/test/kotlin/by/sparkyanvil/fastcow/ui/NotificationModelsTest.kt` | Создать | unit |
 
 **Файлы, которые изменять нельзя:** все, кроме перечисленных.
 
@@ -66,7 +66,7 @@
 ## 6. Контракты
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.ui
+package by.sparkyanvil.fastcow.ui
 
 /** Что показать. folderTooltip — полный путь, если строка папки сокращена; иначе null. */
 internal data class NotificationModel(
@@ -117,7 +117,7 @@ internal fun NotificationContent(model: NotificationModel, onClick: () -> Unit, 
 ```
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.platform.windows
+package by.sparkyanvil.fastcow.platform.windows
 
 /** Проводник. Вызывать на fcs-dialog (COM STA). Не бросает. */
 internal class ExplorerLauncher(private val shell32: Shell32Api = Shell32Api.INSTANCE) {
@@ -230,7 +230,7 @@ MaterialTheme {
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "io.github.alexkuznecov.fastcow.ui.NotificationModelsTest"` | 7 тестов |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.ui.NotificationModelsTest"` | 7 тестов |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 Ручная проверка окна — шаги 5–8 раздела 12 TASK-015.

@@ -63,7 +63,7 @@
 
 ## 4. Область изменений
 
-`S = src/main/kotlin/io/github/alexkuznecov/fastcow/storage/`, `TS` — то же в `src/test/kotlin`.
+`S = src/main/kotlin/by/sparkyanvil/fastcow/storage/`, `TS` — то же в `src/test/kotlin`.
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
@@ -73,9 +73,9 @@
 | 4 | `S/AutoSaver.kt` | Создать | класс |
 | 5 | `S/IoErrorMessages.kt` | Создать | object |
 | 6 | `S/DirectoryValidator.kt` | Создать | object |
-| 7 | `src/main/kotlin/io/github/alexkuznecov/fastcow/platform/windows/KnownFolders.kt` | Создать | класс |
+| 7 | `src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/KnownFolders.kt` | Создать | класс |
 | 8 | `TS/PngFileWriterTest.kt`, `TS/AutoSaverTest.kt`, `TS/IoErrorMessagesTest.kt`, `TS/DirectoryValidatorTest.kt` | Создать | unit |
-| 9 | `src/test/kotlin/io/github/alexkuznecov/fastcow/platform/windows/KnownFoldersTest.kt` | Создать | integration |
+| 9 | `src/test/kotlin/by/sparkyanvil/fastcow/platform/windows/KnownFoldersTest.kt` | Создать | integration |
 
 **Файлы, которые изменять нельзя:** все, кроме перечисленных.
 
@@ -86,7 +86,7 @@
 ## 6. Контракты
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.storage
+package by.sparkyanvil.fastcow.storage
 
 /** Результат сохранения. reason — текст для пользователя (на русском). */
 internal sealed interface SaveResult {
@@ -134,7 +134,7 @@ internal object DirectoryValidator {
 ```
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.platform.windows
+package by.sparkyanvil.fastcow.platform.windows
 
 /** Начальная директория по умолчанию (REQ-001.44). Вызывать с любого потока. */
 internal class KnownFolders : DefaultDirectoryProvider {
@@ -241,8 +241,8 @@ try {
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "io.github.alexkuznecov.fastcow.storage.*"` | 11 тестов |
-| `.\gradlew.bat test --tests "io.github.alexkuznecov.fastcow.platform.windows.KnownFoldersTest"` | 1 тест |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.storage.*"` | 11 тестов |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.platform.windows.KnownFoldersTest"` | 1 тест |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 **Ручная** (пользователь): в журнал записать путь, который вернул тест 12 (вывести в лог `INFO` в тесте). Он должен

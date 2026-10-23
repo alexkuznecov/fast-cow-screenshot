@@ -42,7 +42,7 @@ fast-cow-screenshot/
 │   ├── libs.versions.toml
 │   └── wrapper/ (gradle-wrapper.jar, gradle-wrapper.properties)
 ├── src/
-│   ├── main/kotlin/io/github/alexkuznecov/fastcow/
+│   ├── main/kotlin/by/sparkyanvil/fastcow/
 │   │   ├── Main.kt                 # точка входа main()
 │   │   ├── app/                    # сборка зависимостей, жизненный цикл, потоки
 │   │   ├── domain/                 # чистая логика: геометрия, имена файлов, модели
@@ -53,11 +53,11 @@ fast-cow-screenshot/
 │   │   │   └── jna/                # JNA-интерфейсы, структуры, константы
 │   │   └── ui/                     # трей, уведомление, оверлей, окно настроек, «Сохранить как»
 │   ├── main/resources/logback.xml
-│   └── test/kotlin/io/github/alexkuznecov/fastcow/   # зеркально main
+│   └── test/kotlin/by/sparkyanvil/fastcow/   # зеркально main
 └── docs/
 ```
 
-Базовый пакет: **`io.github.alexkuznecov.fastcow`**. Путь: `src/main/kotlin/io/github/alexkuznecov/fastcow/`.
+Базовый пакет: **`by.sparkyanvil.fastcow`**. Путь: `src/main/kotlin/by/sparkyanvil/fastcow/`.
 
 ## 3. Пакеты и слои
 
@@ -82,7 +82,7 @@ fast-cow-screenshot/
 |---|---|---|
 | Сборка + тесты | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 | Только тесты | `.\gradlew.bat test` | `BUILD SUCCESSFUL`, 0 failed |
-| Один тест | `.\gradlew.bat test --tests "io.github.alexkuznecov.fastcow.domain.PixelRectTest"` | Тесты класса проходят |
+| Один тест | `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.domain.PixelRectTest"` | Тесты класса проходят |
 | Компиляция | `.\gradlew.bat compileKotlin compileTestKotlin` | `BUILD SUCCESSFUL` |
 | Запуск приложения | `.\gradlew.bat run` | Приложение запущено, значок в трее; закрыть через «Выход» в трее. Запускать с таймаутом, если запускает агент |
 | Дистрибутив | `.\gradlew.bat createDistributable` | `build\compose\binaries\main\app\fast-cow-screenshot\fast-cow-screenshot.exe` |
@@ -137,7 +137,7 @@ fast-cow-screenshot/
 - Библиотека: JNA 5.19.1. Свои интерфейсы загружаются так:
   `Native.load("user32", User32Api::class.java, W32APIOptions.DEFAULT_OPTIONS)`. `DEFAULT_OPTIONS` сам выбирает
   `…W`-версии функций, поэтому в интерфейсе функции объявляются **без** суффикса `W` (`GetMonitorInfo`, `MessageBox`).
-- Где лежат маппинги: `io.github.alexkuznecov.fastcow.platform.windows.jna` (TASK-005). Новые функции добавляются только
+- Где лежат маппинги: `by.sparkyanvil.fastcow.platform.windows.jna` (TASK-005). Новые функции добавляются только
   туда и только задачей.
 - Типы из `jna-platform` (`WinDef.HWND`, `WinDef.HDC`, `WinDef.RECT`, `WinDef.POINT`, `WinUser.MSG`,
   `WinUser.MONITORINFOEX`, `WinGDI.BITMAPINFO`, `WinGDI.ICONINFO`) использовать разрешено.

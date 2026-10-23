@@ -46,9 +46,9 @@
 
 ## 4. Область изменений
 
-`J = src/main/kotlin/io/github/alexkuznecov/fastcow/platform/windows/jna/`,
-`P = src/main/kotlin/io/github/alexkuznecov/fastcow/platform/windows/`,
-`T = src/test/kotlin/io/github/alexkuznecov/fastcow/platform/windows/`.
+`J = src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/jna/`,
+`P = src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/`,
+`T = src/test/kotlin/by/sparkyanvil/fastcow/platform/windows/`.
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
@@ -79,7 +79,7 @@
 `com.sun.jna.win32.StdCallLibrary`, `com.sun.jna.win32.W32APIOptions`.
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.platform.windows.jna
+package by.sparkyanvil.fastcow.platform.windows.jna
 
 internal interface User32Api : StdCallLibrary {
     fun GetDC(hWnd: HWND?): HDC?
@@ -194,7 +194,7 @@ internal class CURSORINFO : Structure() {
 `lpfn: Pointer?`, `lParam: Pointer?`, `iImage: Int`.
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.platform.windows
+package by.sparkyanvil.fastcow.platform.windows
 
 /** Сбой WinAPI-вызова. */
 internal class WinApiException(message: String) : RuntimeException(message) {
@@ -295,7 +295,7 @@ HWND-константы получаются как `HWND(Pointer.createConstant
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "io.github.alexkuznecov.fastcow.platform.windows.*"` | 6 тестов пройдены |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.platform.windows.*"` | 6 тестов пройдены |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 ## 13. Критерии готовности (Definition of Done)

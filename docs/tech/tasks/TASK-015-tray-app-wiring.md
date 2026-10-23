@@ -55,11 +55,11 @@
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
-| 1 | `src/main/kotlin/io/github/alexkuznecov/fastcow/ui/TrayIconImage.kt` | Создать | object |
-| 2 | `src/main/kotlin/io/github/alexkuznecov/fastcow/ui/TrayController.kt` | Создать | класс |
-| 3 | `src/main/kotlin/io/github/alexkuznecov/fastcow/app/FastCowApp.kt` | Создать | класс |
-| 4 | `src/main/kotlin/io/github/alexkuznecov/fastcow/Main.kt` | Изменить | тело `main()` |
-| 5 | `src/test/kotlin/io/github/alexkuznecov/fastcow/app/HotkeyConflictMessageTest.kt` | Создать | unit |
+| 1 | `src/main/kotlin/by/sparkyanvil/fastcow/ui/TrayIconImage.kt` | Создать | object |
+| 2 | `src/main/kotlin/by/sparkyanvil/fastcow/ui/TrayController.kt` | Создать | класс |
+| 3 | `src/main/kotlin/by/sparkyanvil/fastcow/app/FastCowApp.kt` | Создать | класс |
+| 4 | `src/main/kotlin/by/sparkyanvil/fastcow/Main.kt` | Изменить | тело `main()` |
+| 5 | `src/test/kotlin/by/sparkyanvil/fastcow/app/HotkeyConflictMessageTest.kt` | Создать | unit |
 
 **Файлы, которые изменять нельзя:** все, кроме перечисленных.
 
@@ -70,7 +70,7 @@
 ## 6. Контракты
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.ui
+package by.sparkyanvil.fastcow.ui
 
 internal object TrayIconImage {
     /** 32×32 TYPE_INT_ARGB: скруглённый квадрат #2E86DE (радиус 8), белая буква "F", шрифт Font.SANS_SERIF BOLD 22, по центру. */
@@ -97,7 +97,7 @@ internal class TrayController(
 ```
 
 ```kotlin
-package io.github.alexkuznecov.fastcow.app
+package by.sparkyanvil.fastcow.app
 
 internal class FastCowApp {
     /** Запуск (раздел 8.2). Вызывать на main-потоке. */
