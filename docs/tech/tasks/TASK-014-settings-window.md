@@ -57,12 +57,12 @@
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
-| 1 | `src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/WindowsFolderDialog.kt` | Создать | диалог папки |
-| 2 | `src/main/kotlin/by/sparkyanvil/fastcow/ui/HotkeyRecorder.kt` | Создать | object |
-| 3 | `src/main/kotlin/by/sparkyanvil/fastcow/ui/SettingsController.kt` | Создать | логика |
-| 4 | `src/main/kotlin/by/sparkyanvil/fastcow/ui/SettingsWindow.kt` | Создать | окно + `@Composable SettingsContent` |
-| 5 | `src/test/kotlin/by/sparkyanvil/fastcow/ui/SettingsControllerTest.kt` | Создать | unit |
-| 6 | `src/test/kotlin/by/sparkyanvil/fastcow/ui/HotkeyRecorderTest.kt` | Создать | unit |
+| 1 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/platform/windows/WindowsFolderDialog.kt` | Создать | диалог папки |
+| 2 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/ui/HotkeyRecorder.kt` | Создать | object |
+| 3 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/ui/SettingsController.kt` | Создать | логика |
+| 4 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/ui/SettingsWindow.kt` | Создать | окно + `@Composable SettingsContent` |
+| 5 | `src/test/kotlin/by/sparkyanvil/fastcowscreenshot/ui/SettingsControllerTest.kt` | Создать | unit |
+| 6 | `src/test/kotlin/by/sparkyanvil/fastcowscreenshot/ui/HotkeyRecorderTest.kt` | Создать | unit |
 
 **Файлы, которые изменять нельзя:** все, кроме перечисленных.
 
@@ -73,7 +73,7 @@
 ## 6. Контракты
 
 ```kotlin
-package by.sparkyanvil.fastcow.platform.windows
+package by.sparkyanvil.fastcowscreenshot.platform.windows
 
 /** SHBrowseForFolderW. Вызывать на fcs-dialog. Не бросает. */
 internal class WindowsFolderDialog(private val shell32: Shell32Api = Shell32Api.INSTANCE) {
@@ -84,7 +84,7 @@ internal class WindowsFolderDialog(private val shell32: Shell32Api = Shell32Api.
 ```
 
 ```kotlin
-package by.sparkyanvil.fastcow.ui
+package by.sparkyanvil.fastcowscreenshot.ui
 
 internal object HotkeyRecorder {
     /** Коды клавиш-модификаторов AWT: VK_CONTROL, VK_SHIFT, VK_ALT, VK_WINDOWS, VK_ALT_GRAPH. */
@@ -265,8 +265,8 @@ finally { Ole32.INSTANCE.CoTaskMemFree(pidl) }
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.ui.HotkeyRecorderTest"` | 5 тестов |
-| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.ui.SettingsControllerTest"` | 10 тестов |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcowscreenshot.ui.HotkeyRecorderTest"` | 5 тестов |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcowscreenshot.ui.SettingsControllerTest"` | 10 тестов |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 Ручная — шаги 21–27 TASK-015.

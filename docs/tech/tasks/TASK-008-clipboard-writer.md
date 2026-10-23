@@ -53,14 +53,14 @@
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
-| 1 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/ClipboardResult.kt` | Создать | sealed |
-| 2 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/ClipboardWriter.kt` | Создать | интерфейс |
-| 3 | `src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/DibEncoder.kt` | Создать | чистый кодер |
-| 4 | `src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/ClipboardRetry.kt` | Создать | повторы |
-| 5 | `src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/WindowsClipboardWriter.kt` | Создать | реализация |
-| 6 | `src/test/kotlin/by/sparkyanvil/fastcow/platform/windows/DibEncoderTest.kt` | Создать | unit |
-| 7 | `src/test/kotlin/by/sparkyanvil/fastcow/platform/windows/ClipboardRetryTest.kt` | Создать | unit |
-| 8 | `src/test/kotlin/by/sparkyanvil/fastcow/platform/windows/WindowsClipboardWriterTest.kt` | Создать | integration |
+| 1 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/capture/ClipboardResult.kt` | Создать | sealed |
+| 2 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/capture/ClipboardWriter.kt` | Создать | интерфейс |
+| 3 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/platform/windows/DibEncoder.kt` | Создать | чистый кодер |
+| 4 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/platform/windows/ClipboardRetry.kt` | Создать | повторы |
+| 5 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/platform/windows/WindowsClipboardWriter.kt` | Создать | реализация |
+| 6 | `src/test/kotlin/by/sparkyanvil/fastcowscreenshot/platform/windows/DibEncoderTest.kt` | Создать | unit |
+| 7 | `src/test/kotlin/by/sparkyanvil/fastcowscreenshot/platform/windows/ClipboardRetryTest.kt` | Создать | unit |
+| 8 | `src/test/kotlin/by/sparkyanvil/fastcowscreenshot/platform/windows/WindowsClipboardWriterTest.kt` | Создать | integration |
 
 **Файлы, которые изменять нельзя:** все, кроме перечисленных.
 
@@ -71,7 +71,7 @@
 ## 6. Контракты
 
 ```kotlin
-package by.sparkyanvil.fastcow.capture
+package by.sparkyanvil.fastcowscreenshot.capture
 
 /** Результат записи в буфер. reason — техническое описание для лога (на английском). */
 internal sealed interface ClipboardResult {
@@ -86,7 +86,7 @@ internal interface ClipboardWriter {
 ```
 
 ```kotlin
-package by.sparkyanvil.fastcow.platform.windows
+package by.sparkyanvil.fastcowscreenshot.platform.windows
 
 /** Кодирование в упакованный CF_DIB 24 бит bottom-up. Без состояния. */
 internal object DibEncoder {
@@ -212,9 +212,9 @@ return Success
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.platform.windows.DibEncoderTest"` | 5 тестов |
-| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.platform.windows.ClipboardRetryTest"` | 2 теста |
-| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.platform.windows.WindowsClipboardWriterTest"` | 1 тест |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcowscreenshot.platform.windows.DibEncoderTest"` | 5 тестов |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcowscreenshot.platform.windows.ClipboardRetryTest"` | 2 теста |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcowscreenshot.platform.windows.WindowsClipboardWriterTest"` | 1 тест |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 **Ручная** (пользователь): сразу после теста 8 (процесс тестов уже завершён) открыть Paint → Ctrl+V → вставилось

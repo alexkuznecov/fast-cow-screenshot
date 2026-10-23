@@ -16,7 +16,7 @@
 
 ## 1. Цель
 
-Связать все компоненты в работающее приложение `FastCowApp`:
+Связать все компоненты в работающее приложение `FastCowScreenshotApp`:
 - значок и меню в трее;
 - регистрация горячих клавиш с уведомлением о конфликтах;
 - корректный выход.
@@ -25,9 +25,9 @@
 
 ## 2. Контекст
 
-- `main()` создаёт `FastCowApp` и вызывает `start()`. После возврата из `main` JVM продолжает работать: значок в трее
+- `main()` создаёт `FastCowScreenshotApp` и вызывает `start()`. После возврата из `main` JVM продолжает работать: значок в трее
   держит живыми потоки AWT. Завершение — только через пункт «Выход» → `System.exit(0)`.
-- Компоненты и потоки — TDD-001 §4, `conventions.md` §6. Свойства `FastCowApp` инициализируются в порядке объявления.
+- Компоненты и потоки — TDD-001 §4, `conventions.md` §6. Свойства `FastCowScreenshotApp` инициализируются в порядке объявления.
   Лямбда `onSaveAs` в `NotificationWindow` ссылается на объявленное ниже свойство `saveAsAction`. Это допустимо:
   лямбда вызывается позже, когда все свойства уже инициализированы.
 - Меню трея — AWT `PopupMenu` (нативное меню Windows). Значок рисуется программно (`TrayIconImage`) — бинарных
@@ -55,11 +55,11 @@
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
-| 1 | `src/main/kotlin/by/sparkyanvil/fastcow/ui/TrayIconImage.kt` | Создать | object |
-| 2 | `src/main/kotlin/by/sparkyanvil/fastcow/ui/TrayController.kt` | Создать | класс |
-| 3 | `src/main/kotlin/by/sparkyanvil/fastcow/app/FastCowApp.kt` | Создать | класс |
-| 4 | `src/main/kotlin/by/sparkyanvil/fastcow/Main.kt` | Изменить | тело `main()` |
-| 5 | `src/test/kotlin/by/sparkyanvil/fastcow/app/HotkeyConflictMessageTest.kt` | Создать | unit |
+| 1 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/ui/TrayIconImage.kt` | Создать | object |
+| 2 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/ui/TrayController.kt` | Создать | класс |
+| 3 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/app/FastCowScreenshotApp.kt` | Создать | класс |
+| 4 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/Main.kt` | Изменить | тело `main()` |
+| 5 | `src/test/kotlin/by/sparkyanvil/fastcowscreenshot/app/HotkeyConflictMessageTest.kt` | Создать | unit |
 
 **Файлы, которые изменять нельзя:** все, кроме перечисленных.
 
@@ -70,7 +70,7 @@
 ## 6. Контракты
 
 ```kotlin
-package by.sparkyanvil.fastcow.ui
+package by.sparkyanvil.fastcowscreenshot.ui
 
 internal object TrayIconImage {
     /** 32×32 TYPE_INT_ARGB: скруглённый квадрат #2E86DE (радиус 8), белая буква "F", шрифт Font.SANS_SERIF BOLD 22, по центру. */
@@ -97,9 +97,9 @@ internal class TrayController(
 ```
 
 ```kotlin
-package by.sparkyanvil.fastcow.app
+package by.sparkyanvil.fastcowscreenshot.app
 
-internal class FastCowApp {
+internal class FastCowScreenshotApp {
     /** Запуск (раздел 8.2). Вызывать на main-потоке. */
     fun start(): Unit = TODO()
     /** Выход (раздел 8.3). Вызывать на EDT. */
@@ -116,9 +116,9 @@ internal class FastCowApp {
 ## 7. Пошаговая реализация
 
 1. `TrayIconImage`, `TrayController` (8.1).
-2. `FastCowApp` (8.2, 8.3) + `HotkeyConflictMessageTest`.
+2. `FastCowScreenshotApp` (8.2, 8.3) + `HotkeyConflictMessageTest`.
 3. `Main.kt`: `Thread.setDefaultUncaughtExceptionHandler { t, e -> log.error("Uncaught exception in {}", t.name, e) }`;
-   прежняя строка лога запуска; `FastCowApp().start()`.
+   прежняя строка лога запуска; `FastCowScreenshotApp().start()`.
 4. `.\gradlew.bat build`, затем ручная приёмка раздела 12.
 
 ## 8. Алгоритм и логика
@@ -136,7 +136,7 @@ SystemTray.getSystemTray().add(icon)
 lastScreenshot.addListener { saveAs.isEnabled = true }   // слушатель уже вызывается на EDT
 ```
 
-### 8.2. FastCowApp: свойства и start()
+### 8.2. FastCowScreenshotApp: свойства и start()
 
 Свойства (в этом порядке):
 ```

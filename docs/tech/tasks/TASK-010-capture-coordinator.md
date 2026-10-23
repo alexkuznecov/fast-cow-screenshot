@@ -61,14 +61,14 @@
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
-| 1 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/RegionSelector.kt` | Создать | интерфейс |
-| 2 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/CaptureOutcome.kt` | Создать | data class |
-| 3 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/CaptureNotifier.kt` | Создать | интерфейс |
-| 4 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/LastScreenshotHolder.kt` | Создать | класс |
-| 5 | `src/main/kotlin/by/sparkyanvil/fastcow/capture/CaptureCoordinator.kt` | Создать | класс |
-| 6 | `src/main/kotlin/by/sparkyanvil/fastcow/app/AppThreads.kt` | Создать | класс |
-| 7 | `src/test/kotlin/by/sparkyanvil/fastcow/capture/CaptureCoordinatorTest.kt` | Создать | unit |
-| 8 | `src/test/kotlin/by/sparkyanvil/fastcow/capture/LastScreenshotHolderTest.kt` | Создать | unit |
+| 1 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/capture/RegionSelector.kt` | Создать | интерфейс |
+| 2 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/capture/CaptureOutcome.kt` | Создать | data class |
+| 3 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/capture/CaptureNotifier.kt` | Создать | интерфейс |
+| 4 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/capture/LastScreenshotHolder.kt` | Создать | класс |
+| 5 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/capture/CaptureCoordinator.kt` | Создать | класс |
+| 6 | `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/app/AppThreads.kt` | Создать | класс |
+| 7 | `src/test/kotlin/by/sparkyanvil/fastcowscreenshot/capture/CaptureCoordinatorTest.kt` | Создать | unit |
+| 8 | `src/test/kotlin/by/sparkyanvil/fastcowscreenshot/capture/LastScreenshotHolderTest.kt` | Создать | unit |
 
 **Файлы, которые изменять нельзя:** все, кроме перечисленных.
 
@@ -79,7 +79,7 @@
 ## 6. Контракты
 
 ```kotlin
-package by.sparkyanvil.fastcow.capture
+package by.sparkyanvil.fastcowscreenshot.capture
 
 /** Оверлей выбора области. select вызывается на EDT; onResult вызывается на EDT ровно один раз. */
 internal interface RegionSelector {
@@ -131,7 +131,7 @@ internal class CaptureCoordinator(
 ```
 
 ```kotlin
-package by.sparkyanvil.fastcow.app
+package by.sparkyanvil.fastcowscreenshot.app
 
 /** Потоки приложения (conventions.md §6). */
 internal class AppThreads(
@@ -274,7 +274,7 @@ saveExecutor.execute {
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.capture.*"` | 13 + 2 (+4 из TASK-006) тестов |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcowscreenshot.capture.*"` | 13 + 2 (+4 из TASK-006) тестов |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 ## 13. Критерии готовности (Definition of Done)

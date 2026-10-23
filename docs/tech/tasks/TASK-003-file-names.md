@@ -43,7 +43,7 @@
 
 ## 4. Область изменений
 
-`M = src/main/kotlin/by/sparkyanvil/fastcow/domain/`, `T = src/test/kotlin/by/sparkyanvil/fastcow/domain/`.
+`M = src/main/kotlin/by/sparkyanvil/fastcowscreenshot/domain/`, `T = src/test/kotlin/by/sparkyanvil/fastcowscreenshot/domain/`.
 
 | # | Файл | Действие | Что именно |
 |---|---|---|---|
@@ -61,7 +61,7 @@
 ## 6. Контракты
 
 ```kotlin
-package by.sparkyanvil.fastcow.domain
+package by.sparkyanvil.fastcowscreenshot.domain
 
 import java.nio.file.Path
 import java.time.LocalDateTime
@@ -165,7 +165,7 @@ internal object TextEllipsis {
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.domain.*"` | все тесты пакета проходят (включая TASK-002, если она сделана) |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcowscreenshot.domain.*"` | все тесты пакета проходят (включая TASK-002, если она сделана) |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 ## 13. Критерии готовности (Definition of Done)

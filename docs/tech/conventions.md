@@ -42,7 +42,7 @@ fast-cow-screenshot/
 │   ├── libs.versions.toml
 │   └── wrapper/ (gradle-wrapper.jar, gradle-wrapper.properties)
 ├── src/
-│   ├── main/kotlin/by/sparkyanvil/fastcow/
+│   ├── main/kotlin/by/sparkyanvil/fastcowscreenshot/
 │   │   ├── Main.kt                 # точка входа main()
 │   │   ├── app/                    # сборка зависимостей, жизненный цикл, потоки
 │   │   ├── domain/                 # чистая логика: геометрия, имена файлов, модели
@@ -53,23 +53,23 @@ fast-cow-screenshot/
 │   │   │   └── jna/                # JNA-интерфейсы, структуры, константы
 │   │   └── ui/                     # трей, уведомление, оверлей, окно настроек, «Сохранить как»
 │   ├── main/resources/logback.xml
-│   └── test/kotlin/by/sparkyanvil/fastcow/   # зеркально main
+│   └── test/kotlin/by/sparkyanvil/fastcowscreenshot/   # зеркально main
 └── docs/
 ```
 
-Базовый пакет: **`by.sparkyanvil.fastcow`**. Путь: `src/main/kotlin/by/sparkyanvil/fastcow/`.
+Базовый пакет: **`by.sparkyanvil.fastcowscreenshot`**. Путь: `src/main/kotlin/by/sparkyanvil/fastcowscreenshot/`.
 
 ## 3. Пакеты и слои
 
 | Пакет | Ответственность | Может зависеть от | Не может зависеть от |
 |---|---|---|---|
-| `…fastcow.domain` | Геометрия, имена файлов, значения | только JDK (`java.time`, `java.nio.file`) | `java.awt.*` (кроме `java.awt.image.BufferedImage`), `javax.swing`, `com.sun.jna`, `androidx.compose` |
-| `…fastcow.settings` | `AppSettings`, `HotkeyBinding`, хранилище JSON | `domain`, kotlinx.serialization | `platform`, `ui`, `com.sun.jna` |
-| `…fastcow.capture` | Интерфейсы (`ScreenCapturer`, `ClipboardWriter`…), `CaptureCoordinator` | `domain`, `settings`, `storage` (интерфейсы) | `platform`, `ui`, `com.sun.jna`, `javax.swing` |
-| `…fastcow.storage` | Запись PNG, автосохранение | `domain`, `javax.imageio` | `platform`, `ui`, `com.sun.jna` |
-| `…fastcow.platform.windows` (+ `.jna`) | Реализации интерфейсов на WinAPI | `domain`, `capture`, `settings`, JNA | `ui` |
-| `…fastcow.ui` | Окна, трей, диалоги | все пакеты выше, Compose, Swing/AWT | — |
-| `…fastcow.app` | Сборка графа объектов, потоки, выход | все | — |
+| `…fastcowscreenshot.domain` | Геометрия, имена файлов, значения | только JDK (`java.time`, `java.nio.file`) | `java.awt.*` (кроме `java.awt.image.BufferedImage`), `javax.swing`, `com.sun.jna`, `androidx.compose` |
+| `…fastcowscreenshot.settings` | `AppSettings`, `HotkeyBinding`, хранилище JSON | `domain`, kotlinx.serialization | `platform`, `ui`, `com.sun.jna` |
+| `…fastcowscreenshot.capture` | Интерфейсы (`ScreenCapturer`, `ClipboardWriter`…), `CaptureCoordinator` | `domain`, `settings`, `storage` (интерфейсы) | `platform`, `ui`, `com.sun.jna`, `javax.swing` |
+| `…fastcowscreenshot.storage` | Запись PNG, автосохранение | `domain`, `javax.imageio` | `platform`, `ui`, `com.sun.jna` |
+| `…fastcowscreenshot.platform.windows` (+ `.jna`) | Реализации интерфейсов на WinAPI | `domain`, `capture`, `settings`, JNA | `ui` |
+| `…fastcowscreenshot.ui` | Окна, трей, диалоги | все пакеты выше, Compose, Swing/AWT | — |
+| `…fastcowscreenshot.app` | Сборка графа объектов, потоки, выход | все | — |
 
 Правила:
 - Любой вызов `com.sun.jna.*` — только в `platform.windows` и `platform.windows.jna`. Исключение — `ui` получает HWND окна
@@ -82,7 +82,7 @@ fast-cow-screenshot/
 |---|---|---|
 | Сборка + тесты | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 | Только тесты | `.\gradlew.bat test` | `BUILD SUCCESSFUL`, 0 failed |
-| Один тест | `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.domain.PixelRectTest"` | Тесты класса проходят |
+| Один тест | `.\gradlew.bat test --tests "by.sparkyanvil.fastcowscreenshot.domain.PixelRectTest"` | Тесты класса проходят |
 | Компиляция | `.\gradlew.bat compileKotlin compileTestKotlin` | `BUILD SUCCESSFUL` |
 | Запуск приложения | `.\gradlew.bat run` | Приложение запущено, значок в трее; закрыть через «Выход» в трее. Запускать с таймаутом, если запускает агент |
 | Дистрибутив | `.\gradlew.bat createDistributable` | `build\compose\binaries\main\app\fast-cow-screenshot\fast-cow-screenshot.exe` |
@@ -137,7 +137,7 @@ fast-cow-screenshot/
 - Библиотека: JNA 5.19.1. Свои интерфейсы загружаются так:
   `Native.load("user32", User32Api::class.java, W32APIOptions.DEFAULT_OPTIONS)`. `DEFAULT_OPTIONS` сам выбирает
   `…W`-версии функций, поэтому в интерфейсе функции объявляются **без** суффикса `W` (`GetMonitorInfo`, `MessageBox`).
-- Где лежат маппинги: `by.sparkyanvil.fastcow.platform.windows.jna` (TASK-005). Новые функции добавляются только
+- Где лежат маппинги: `by.sparkyanvil.fastcowscreenshot.platform.windows.jna` (TASK-005). Новые функции добавляются только
   туда и только задачей.
 - Типы из `jna-platform` (`WinDef.HWND`, `WinDef.HDC`, `WinDef.RECT`, `WinDef.POINT`, `WinUser.MSG`,
   `WinUser.MONITORINFOEX`, `WinGDI.BITMAPINFO`, `WinGDI.ICONINFO`) использовать разрешено.

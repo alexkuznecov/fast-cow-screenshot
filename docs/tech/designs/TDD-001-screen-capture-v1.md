@@ -25,7 +25,7 @@
 |---|---|---|---|---|
 | REQ-001.1, .52 | 3 режима, клавиши по умолчанию | `HotkeySettings`, `CaptureCoordinator` | TASK-004, 010 | unit + ручная |
 | REQ-001.2 | Глобальные клавиши в фоне | `WindowsHotkeyService`, `NativeMessageLoop` | TASK-007 | ручная |
-| REQ-001.3 | Уведомление о конфликте клавиши | `WindowsHotkeyService`, `FastCowApp` | TASK-007, 015 | ручная |
+| REQ-001.3 | Уведомление о конфликте клавиши | `WindowsHotkeyService`, `FastCowScreenshotApp` | TASK-007, 015 | ручная |
 | REQ-001.4 | Переназначение клавиш | `SettingsWindow`, `HotkeyBinding` | TASK-004, 014 | unit + ручная |
 | REQ-001.5 | Игнор повторных нажатий | `CaptureCoordinator` (флаг `busy`) | TASK-010 | unit |
 | REQ-001.6, .8 | Монитор под курсором, fallback на primary | `WindowsMonitorProvider` | TASK-006 | ручная + integration |
@@ -112,16 +112,16 @@ flowchart LR
 | `WindowsSaveDialog`, `WindowsMessageBox`, `SaveAsAction` | `platform.windows`, `ui` | «Сохранить как…» | `fcs-dialog` | TASK-012 |
 | `RegionOverlay`, `SelectionState` | `ui` | Оверлей выделения | EDT | TASK-013 |
 | `WindowsFolderDialog`, `SettingsWindow`, `HotkeyRecorder` | `platform.windows`, `ui` | Окно настроек | EDT + `fcs-dialog` | TASK-014 |
-| `TrayController`, `TrayIconImage`, `FastCowApp`, `Main.kt` | `ui`, `app` | Трей, сборка, запуск, выход | EDT | TASK-015 |
+| `TrayController`, `TrayIconImage`, `FastCowScreenshotApp`, `Main.kt` | `ui`, `app` | Трей, сборка, запуск, выход | EDT | TASK-015 |
 
 ### 4.2. Правила зависимостей
 
 `domain` ← `settings` ← `storage` ← `capture` ← `platform.windows` / `ui` ← `app`. `capture` знает только интерфейсы;
-реализации на WinAPI подставляет `FastCowApp`. Подробнее — `conventions.md` §3.
+реализации на WinAPI подставляет `FastCowScreenshotApp`. Подробнее — `conventions.md` §3.
 
 ## 5. Контракты
 
-Полные сигнатуры приведены в задачах; здесь — сводка межмодульных интерфейсов (пакет `by.sparkyanvil.fastcow`).
+Полные сигнатуры приведены в задачах; здесь — сводка межмодульных интерфейсов (пакет `by.sparkyanvil.fastcowscreenshot`).
 
 ```kotlin
 // domain
@@ -193,7 +193,7 @@ EDT (трей/уведомление) → `SaveAsAction.run()` → `fcs-dialog`:
   (захват 1/2) или после отмены/записи в буфер (режим 3). Сохранение в файл идёт уже после снятия флага (REQ-001.33).
 - `LastScreenshotHolder` — `AtomicReference<Screenshot?>`; слушатели вызываются через `uiExecutor`.
 - `SettingsStore` — `@Volatile current` + `synchronized(update)`.
-- Выход: `FastCowApp.exit()` на EDT → `hotkeys.stop()` → `AppThreads.shutdown(5000 мс)` → удалить трей →
+- Выход: `FastCowScreenshotApp.exit()` на EDT → `hotkeys.stop()` → `AppThreads.shutdown(5000 мс)` → удалить трей →
   `System.exit(0)`.
 
 ### 7.1. Состояния координатора

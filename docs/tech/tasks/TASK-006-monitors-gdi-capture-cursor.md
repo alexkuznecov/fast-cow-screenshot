@@ -55,13 +55,13 @@
 
 ## 3. Предусловия
 
-- TASK-002: `PixelRect`, `PixelPoint`, `MonitorInfo`, `VirtualDesktop`, `GAP_FILL_RGB` в `…fastcow.domain`.
+- TASK-002: `PixelRect`, `PixelPoint`, `MonitorInfo`, `VirtualDesktop`, `GAP_FILL_RGB` в `…fastcowscreenshot.domain`.
 - TASK-005: `User32Api`, `Gdi32Api`, `CURSORINFO`, `WinConst`, `WinApiException`, `DpiAwareness` в `…platform.windows(.jna)`.
 - `.\gradlew.bat build` → `BUILD SUCCESSFUL`.
 
 ## 4. Область изменений
 
-`C = src/main/kotlin/by/sparkyanvil/fastcow/capture/`, `P = src/main/kotlin/by/sparkyanvil/fastcow/platform/windows/`,
+`C = src/main/kotlin/by/sparkyanvil/fastcowscreenshot/capture/`, `P = src/main/kotlin/by/sparkyanvil/fastcowscreenshot/platform/windows/`,
 `TC`, `TP` — те же пути в `src/test/kotlin`.
 
 | # | Файл | Действие | Что именно |
@@ -87,7 +87,7 @@
 ## 6. Контракты
 
 ```kotlin
-package by.sparkyanvil.fastcow.capture
+package by.sparkyanvil.fastcowscreenshot.capture
 
 /** Ожидаемый сбой захвата (WinAPI, нет мониторов). */
 internal class CaptureException(message: String, cause: Throwable? = null) : Exception(message, cause)
@@ -141,7 +141,7 @@ internal object FrameAssembler {
 ```
 
 ```kotlin
-package by.sparkyanvil.fastcow.platform.windows
+package by.sparkyanvil.fastcowscreenshot.platform.windows
 
 internal class WindowsMonitorProvider(private val user32: User32Api = User32Api.INSTANCE) : MonitorProvider
 internal class GdiScreenCapturer(
@@ -281,8 +281,8 @@ DIB и изображение одного размера, поэтому инд
 
 | Команда | Ожидаемый результат |
 |---|---|
-| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.capture.FrameAssemblerTest"` | 4 теста |
-| `.\gradlew.bat test --tests "by.sparkyanvil.fastcow.platform.windows.GdiCaptureIntegrationTest"` | 4 теста |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcowscreenshot.capture.FrameAssemblerTest"` | 4 теста |
+| `.\gradlew.bat test --tests "by.sparkyanvil.fastcowscreenshot.platform.windows.GdiCaptureIntegrationTest"` | 4 теста |
 | `.\gradlew.bat build` | `BUILD SUCCESSFUL` |
 
 **Ручная** (пользователь, через `question`):
